@@ -1,0 +1,994 @@
+import React from 'react';
+import {Animated,Dimensions,Text, View, ScrollView, Image, TouchableHighlight, TouchableOpacity, TextInput } from 'react-native';
+import {Actions, TabBar, Scene} from 'react-native-router-flux';
+import { NativeBaseProvider, HStack, VStack, Center } from 'native-base';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import RecBook from '../const/recBook';
+import DaftarBuku from '../const/daftarBuku';
+import GenreBuku from '../const/genreBuku';
+import GLOBAL from '../Global/global';
+import { fontSize } from 'styled-system';
+
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
+
+
+export default function (){
+
+    const scrollY = new Animated.Value(0);
+    const headerHeight = scrollY.interpolate({
+        inputRange: [0, 260],
+        outputRange: [250, 70],
+        extrapolate: 'clamp',
+    });
+    const headerContentMargin = scrollY.interpolate({
+        inputRange: [0, 260],
+        outputRange: [0, -190],
+        extrapolate: 'clamp',
+    });
+    const scrollItemHeight = scrollY.interpolate({
+        inputRange: [0,160],
+        outputRange: [250, 340],
+        extrapolate: 'clamp',
+    });
+
+    return(
+
+        <NativeBaseProvider>
+            <View style={{ flex:1}}>
+
+                <ScrollView
+                 onScroll={Animated.event(
+                     [{
+                         nativeEvent: {
+                             contentOffset:{
+                                 y: scrollY
+                             }
+                         }
+                     }]
+                     ,{useNativeDriver: false}
+                 )}
+                >
+                    <Animated.View
+                     style={{
+                         marginTop: scrollItemHeight,
+                     }}
+                    >
+                        <ScrollView
+                         horizontal={true}
+                         showsHorizontalScrollIndicator={false}
+                        >
+                            <RecBook
+                            urel = "https://images.booksense.com/images/104/810/9780996810104.jpg"
+                            title="Damien BA'AL "
+                            years="21 juni 2021"
+                            />
+                            <RecBook
+                            urel = "https://i.pinimg.com/originals/5f/e3/62/5fe36271a1b8fe83b22571f3b85de826.jpg"
+                            title="Throll Hunter Tales of Arcadia"
+                            years="11 april 2021"
+                            />
+                            <RecBook
+                            urel = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2L8gB-lyNm8apIwxkYRlLpPXpArw-_LVK0w&usqp=CAU"
+                            title="Angel Song"
+                            years="19 januari 2021"
+                            />
+                            <RecBook
+                            urel = "https://i.jeded.com/i/adit-sopo-jarwo-the-movie.209312.jpg"
+                            title="Adit Sopo Jarwo The Movie "
+                            years="15 mei 2021"
+                            />
+                        </ScrollView>
+
+                        <DaftarBuku 
+                         title="fundametal of electric circuit"
+                         urel = "https://images-na.ssl-images-amazon.com/images/I/41aL2bVlVRL._SX389_BO1,204,203,200_.jpg"
+                         year="2020"
+                         description="Then dsawe bind the animated value to the ScrollView scroll position. To do that we use an Animated.event with a mapping to the event object property that we want to bind to the animated value. In this case it is 
+                         Then we bind the animated value to the ScrollView scroll position. To do that we use an Animated.event with a mapping to the event object property that we want to bind to the animated value. In this case it is "
+                        />
+                        <DaftarBuku 
+                         title="fundametal of electric circuit"
+                         urel = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYS9VzpEluP3wwqgAL8QpaTwR9CKiaNE7QCg&usqp=CAU"
+                         year="2020"
+                         description="Then we bind the animated value to the ScrollView scroll position. To do that we use an Animated.event with a mapping to the event object property that we want to bind to the animated value. In this case it is 
+                         Then we bind the animated value to the ScrollView scroll position. To do that we use an Animated.event with a mapping to the event object property that we want to bind to the animated value. In this case it is "
+                        />
+                        <DaftarBuku 
+                         title="fundametal of electric circuit"
+                         urel = "https://images-platform.99static.com//paGJZG8zlJyLmqQILK5_AQdEVjw=/0x0:2039x2039/fit-in/500x500/99designs-contests-attachments/118/118112/attachment_118112956"
+                         year="2020"
+                         description="Then we bind the animated value to the ScrollView scroll position. To do that we use an Animated.event with a mapping to the event object property that we want to bind to the animated value. In this case it is 
+                         Then we bind the animated value to the ScrollView scroll position. To do that we use an Animated.event with a mapping to the event object property that we want to bind to the animated value. In this case it is "
+                        />
+                        <DaftarBuku 
+                         title="fundametal of electric circuit"
+                         urel = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUdaSbKzbyNiaSYuZ60C38Hken6L8ggOQC1yj_72ZUGANs8MuNel-plMRR_K33s0-Fm5M&usqp=CAU"
+                         year="2020"
+                         description="Then we bind the animated value to the ScrollView scroll position. To do that we use an Animated.event with a mapping to the event object property that we want to bind to the animated value. In this case it is 
+                         Then we bind the animated value to the ScrollView scroll position. To do that we use an Animated.event with a mapping to the event object property that we want to bind to the animated value. In this case it is "
+                        />
+
+
+                    </Animated.View>
+                    
+                </ScrollView>
+
+                <Animated.View style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right : 0,
+                    height: headerHeight,
+                    backgroundColor: 'white',
+                    overflow: 'hidden',
+                    elevation: 5,
+                }} >
+
+                    <View 
+                    style={{
+                        flex:1,
+                        flexDirection: 'row',
+                        alignContent: 'center',
+                    }}>
+                        <View style={{flex:1}} >
+                            <Animated.View style={{marginTop: headerContentMargin}} >
+                                <View style={{marginLeft:10,alignItems: 'flex-start'}} >
+                                    <Text 
+                                    style={{
+                                        marginTop:45,
+                                        fontSize:28,
+                                        color: GLOBAL.COLOR.DARKBLUE,
+                                        fontWeight: 'bold',
+                                    }} 
+                                    >Halo</Text>
+                                    <Text
+                                    style={{
+                                        fontSize:30,
+                                        
+                                    }}
+                                    >{GLOBAL.USER.USERNAME}</Text>
+                                </View>
+                            </Animated.View>
+                        </View>
+
+                        <View style={{flex:1}} >
+                            <Animated.View style={{marginTop: headerContentMargin}} >
+                                <View style={{alignItems: 'center'}} >
+                                    <Image
+                                     source={{
+                                         uri: 'https://www.elmwood-jun.croydon.sch.uk/wp-content/uploads/2019/11/ReadingPNG.png'
+                                     }}
+                                     style={{
+                                         marginTop: 15,
+                                         width: 150,
+                                         height:160,
+                                         resizeMode: 'cover',
+                                     }}
+                                    />  
+                                    
+                                </View>
+                            </Animated.View>
+                        </View>
+                    </View>
+
+                    <View style={{alignItems:'center'}} >
+                        <View 
+                        style={{
+                            flexDirection: 'row',
+                            backgroundColor: 'white',
+                            width: 300,
+                            paddingHorizontal:10,
+                            paddingVertical:4,
+                            borderRadius: 20,
+                            marginBottom: 5,
+                        }}
+                        >
+                            <Icon name="book-search" size={24} style={{color:GLOBAL.COLOR.DARKBLUE,paddingTop:12}} />
+
+                            <TextInput 
+                            placeholder="Baca Apa Hari Ini?"
+                            returnKeyType="search"
+                            style={{
+                                height:50, 
+                                width: 250, 
+                                backgroundColor:'white',
+                                paddingHorizontal: 20,
+                                borderBottomWidth: 1.5,
+                                borderBottomColor: GLOBAL.COLOR.DARKPURPLE,
+                            }} 
+                            
+                            />
+
+                        </View>
+                    </View>
+
+                </Animated.View>
+
+            </View>
+        </NativeBaseProvider>
+
+    );
+}
+
+
+
+
+////============================= ERROR NAVIGATION PDF BACKUP ================//////
+import React, { useEffect } from 'react';
+import { RefreshControl,ScrollView ,StyleSheet, Dimensions, View, Text, Button, TouchableOpacity } from 'react-native';
+import {
+    NativeBaseProvider,
+    Spinner,
+}from 'native-base';
+import Pdf from 'react-native-pdf';
+import GLOBAL from '../Global/global';
+
+import {ActionConst, Actions} from 'react-native-router-flux';
+
+
+export default class PDF extends React.Component {
+
+    
+
+    constructor(props){
+        super(props);
+    
+        this.state={
+            page: 0,
+            totalpage:0,
+            percent:0,
+            errorStatus: '',
+
+            urel: 'http://engineering.nyu.edu/mechatronics/Control_Lab/Criag/Craig_RPI/2001/RLocus_Analysis_Design.pdf',
+			filepath: '',
+            refreshing: false,
+
+            loading:true,
+            errors:false,
+
+            orientation: '',
+
+            dimensionWidth: Dimensions.get('window').width,
+            dimensionHeight: Dimensions.get('window').height,
+        };
+
+    }
+
+    isPortrait(){
+        const dim = Dimensions.get('screen');
+        return dim.height >= dim.width;
+    };
+      
+    onLayout(){
+        this.setState({
+            dimensionWidth: Dimensions.get('window').width,
+            dimensionHeight: Dimensions.get('window').height,
+        });
+    }
+
+    
+    componentWillUnmount() {
+        // fix Warning: Can't perform a React state update on an unmounted component
+        this.setState = (state,callback)=>{
+            return;
+        };
+    }
+    
+    goback = () =>{
+        Actions.Dashboard({type: 'reset'});
+    }
+    
+    render() {
+        //const source = {uri:'http://engineering.nyu.edu/mechatronics/Control_Lab/Criag/Craig_RPI/2001/RLocus_Analysis_Design.pdf',cache:true};
+        const source = {uri:this.props.urel,cache:true};
+        //const source = require('./test.pdf');  // ios only
+        //const source = {uri:'bundle-assets://test.pdf'};
+
+        //const source = {uri:'file:///sdcard/test.pdf'};
+        //const source = {uri:"data:application/pdf;base64,JVBERi0xLjcKJc..."};
+        // const dimension = () => {
+        //     this.setState({dimensionHeight:Dimensions.get('window').height, dimensionWidth:Dimensions.get('window').Width,})
+        // };
+        
+ 
+        return (
+            <NativeBaseProvider>
+        
+                <View 
+                style={{
+                    flex: 1,
+                    justifyContent: 'flex-start',
+                    alignItems: 'center',
+                }}
+                onLayout={this.onLayout.bind(this)}
+                >
+                    <Pdf
+                        source={source}
+                        cache={true}
+                        onLoadComplete={(numberOfPages,filePath)=>{
+                            console.log(`number of pages: ${numberOfPages}`);
+                            console.log(`File Location: ${filePath}`)
+                            this.setState({loading:false})
+							this.setState({filepath:filePath})
+                        }}
+                        onPageChanged={(page,numberOfPages)=>{
+                            console.log(`current page: ${page}`);
+                            this.setState({page: page})
+                            this.setState({totalpage: numberOfPages})
+                        }}
+                        onError={(error)=>{
+                            console.log(error);
+                            this.setState({errors: true});
+                            if(error.toString() === 'Error: cannot create document: File not in PDF format or corrupted.'){
+                                this.setState({errorStatus: 'Terjadi error di server coba buku lainnya'})
+                            }
+                            else if(error.toString() === 'Error: No such file or directory'){
+                                this.setState({errorStatus: 'Jangan Kebanyakan rotate, Rotate marai BUG!!, REFRESH'})
+                            }
+                            else{
+                                this.setState({errorStatus: 'Error Coba Refresh Halaman ini'})
+                                
+                            }
+                        }}
+                        onPressLink={(uri)=>{
+                            console.log(`Link presse: ${uri}`)
+                        }}
+                        
+                        onLoadProgress={(percents)=>{
+                            
+                            this.setState({percent: (Math.round(percents*1000)/10)})
+                        }}
+
+                        style={{
+                            flex:1,
+                            width: this.state.dimensionWidth,
+                            height: this.state.dimensionHeight,
+                        }}
+                        
+                        />
+
+                        {/* Loading Section */}
+                        { !this.state.errors && this.state.loading && 
+                        <View style={{alignItems:'center', position: 'absolute', marginTop: Dimensions.get('window').height/2}}>
+                            <View>
+                                <Spinner  color={GLOBAL.COLOR.PURPLE} position="absolute"  size={50} 
+                                marginTop={-10} />
+                            </View>
+                            <View style={{width:100}}>
+                                <Text
+                                    style={{
+                                        backgroundColor: GLOBAL.COLOR.PURPLE,
+                                        width: this.state.percent,
+                                        height:10,
+                                        borderRadius:2,
+                                        
+                                    }}
+                                ></Text> 
+                            </View>
+                            <View>
+                                <Text style={{paddingTop:15}} >{this.state.percent}%</Text>
+                            </View>
+                        </View>
+
+                        }
+
+                        {/* Page navigator */}
+                        { 
+                            !this.state.errors && !this.state.loading &&
+
+                            <Text
+                            style={{
+                                position: 'absolute',
+                                right:0,
+                                bottom: 0,
+                                marginRight: 10,
+                                marginBottom:10,
+                                backgroundColor: '#1F112CB0',
+                                color: 'white',
+                                fontSize:14,
+                                paddingVertical: 3,
+                                paddingHorizontal: 5,
+                                borderRadius: 5,
+                                
+                            }}
+                            >{this.state.page}/{this.state.totalpage}</Text> 
+                        }
+
+                        {/* Error section */}
+                        { this.state.errors && 
+                            <View>
+                                <Text 
+                                style={{
+                                    paddingVertical:5,
+                                    backgroundColor: 'red',
+                                    paddingHorizontal: 10,
+                                    marginBottom: 15,
+                                    fontSize: 15,
+                                    color: 'white',
+                                    borderRadius:10,
+                                    fontWeight: 'bold',
+                                }} 
+                                >{ this.state.errorStatus }</Text>
+                                <Button title="Refresh" onPress={Actions.refresh} />
+                            </View>
+                        }
+
+                        <Text> {this.state.filepath} </Text>
+                        
+                            
+                </View>
+                
+                <TouchableOpacity  
+                    onPress={()=>this.goback()}
+                    style={{
+                        backgroundColor: 'red',
+                        paddingHorizontal:10,
+                        paddingVertical:2,
+                    }}
+                    >
+                        <Text>GO BACK</Text>
+                    </TouchableOpacity>
+            </NativeBaseProvider>
+        
+        )
+  }
+}
+
+
+//===========index.php=================//
+<?php
+
+    //turn off error reporting in webview
+    //error_reporting(0);
+    header('Content-Type: application/json');
+    //error_reporting( E_ALL );
+    //ini_set('display_errors', '1');
+
+    //id for connecting to database
+    // $dbserver = 'localhost';
+    // $dbuser = 'id17237196_ahsanu';
+    // $dbpass = '&LtzThW@K$A0';
+    // $dbname = 'id17237196_semerbak';
+
+    // $dbserver = 'sql6.freemysqlhosting.net';
+    // $dbuser = 'sql6424491';
+    // $dbpass = 'yfDHcPNeax';
+    // $dbname = 'sql6424491';
+
+    $servername = "localhost";
+    $username = "admin_default";
+    $password = "@antonigoahsanu171";
+    $database = "admin_default";
+
+    // Create connection
+    $db = new mysqli($servername, $username, $password, $database);
+
+    $command = $_POST['command'];
+    $appUser = $_POST['appuser'];
+    $APIKey = $_POST['apikey'];
+
+    //login variable
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    //signup variable
+    $signupEmail = $_POST['signupemail'];
+    $signupNamaLengkap = $_POST['signupnamalengkap'];
+    $signupUsername = $_POST['signupusername'];
+    $signupPassword = $_POST['signuppassword'];
+    $signupNoHandphone = $_POST['signupnohandphone'];
+
+    //mail section
+
+    //data profile variable
+    $userId = $_POST['userid'];
+
+    //update data profil variable
+    $namaLengkap = $_POST['namalengkap'];
+    $noHandphone = $_POST['nohandphone'];
+
+    //findBuku variable
+    $titleBuku = $_POST['titlebuku'];
+
+    //addhistory
+    //$userId = $_POST['userid'];
+    $idBuku = $_POST['idbuku'];
+
+    //gethistory variable
+    //$userId = $_POST['userid'];
+
+    //output json variable
+    $info = array();
+
+
+    if ($db->connect_error) {
+        echo ("Connection failed: " . $db->connect_error);
+    }
+    else{
+
+        switch($command){
+
+//==========Login section===================================================================================//
+            case 'login':{
+                $query = "SELECT username, namalengkap ,password,id FROM user WHERE username= '$username'";
+
+                $result = $db->query($query);
+                if($result->num_rows > 0){
+                    //cek apakah password benar
+                    $obj = $result->fetch_object();
+                    $cusername = $obj->username;
+                    $cpassword = $obj->password;
+                    $userid = $obj->id;
+                    $userfullname = $obj->namalengkap;
+
+                    if($cusername == $username && $cpassword == $password){
+                        $info['data']['logindata']['loginsucces'] = 1;
+                        $info['data']['logindata']['userid'] = $userid;
+                        $info['data']['logindata']['userfullname'] = $userfullname;
+                        echo json_encode($info['data']);
+                    }
+                    //username ada namun password salah
+                    else{
+                        $info['data']['logindata']['loginsucces'] = 2;
+                        echo json_encode($info['data']);
+                    }
+
+                }
+
+                //username tidak ditemukan
+                else{
+                    //echo json 0 -> username tidak ada / belum terdaftar
+                    $info['data']['logindata']['loginsucces'] = 0;
+                    echo json_encode($info['data']);
+
+                }
+
+                //echo "keluar fungsi login";
+                $db->close();
+                exit;
+                break;
+
+
+            }
+
+//==========Signup section===================================================================================//
+            case 'signup':{
+                $query1 = "SELECT username FROM user WHERE username= '$signupUsername'";
+                $query2 = "INSERT INTO user (email, namalengkap, username, password,nohandphone, poin) VALUES ('$signupEmail', '$signupNamaLengkap', '$signupUsername', '$signupPassword', '$signupNoHandphone',0 )";
+
+                $result = $db->query($query1);
+
+                //username sudah digunakann
+                if($result->num_rows>0){
+                    $info['data']['signupdata']['signupsucces'] = 2;
+                    echo json_encode($info['data']);
+                }
+
+                //username belum digunakan
+                else{
+
+                    //berhasil menambahkan data ke database
+                    if($db->query($query2) === TRUE){
+                        $info['data']['signupdata']['signupsucces'] = 1;
+                        echo json_encode($info['data']);
+
+                    }
+
+                    //gagal menambahkan data ke database
+                    else{
+                        $info['data']['signupdata']['signupsucces'] = 0;
+                        echo json_encode($info['data']);
+
+                        //echo "Error: " . $query2 . "<br>" . $db->error;
+                    }
+                }
+
+                $db->close();
+                exit;
+                break;
+            }
+
+//==========GETDAFTARBUKU section===================================================================================//
+
+            case 'getdaftarbuku': {
+                //$query = "SELECT * FROM book LIMIT 2 OFFSET 20";
+                $query = "SELECT * FROM book";
+                $result = $db->query($query);
+
+                if($result->num_rows > 0){
+                    $listgenre = array();
+                    $tempgenre = array();
+
+                    while ($obj = $result -> fetch_object()) {
+                        $temp['id'] = $obj->id;
+                        $temp['title'] = $obj->title;
+                        $temp['date'] = $obj->date;
+
+                        $date = new DateTime($temp['date']);
+                        $temp['date'] = date_format($date,"d F Y ");    //convert to word
+
+                        $temp['genre'] = $obj->genre;
+                        $temp['uri'] = $obj->uri;
+                        $temp['description'] = $obj->description;
+                        $temp['cover'] = $obj->cover;
+
+                        array_push($info, $temp);
+
+
+                    }
+                    echo json_encode($info);
+
+                }
+                else if($result->num_rows == 0){
+                    //tidak ada lagi buku yang dapat ditampilkan
+                    $info['data']['getdaftarbukustatus']=1;
+                    echo json_encode($info['data']);
+                }
+                $db->close();
+                exit;
+                break;
+
+            }
+//==========GETGENRE section===================================================================================//
+
+            case 'getgenre': {
+                //$query = "SELECT * FROM book LIMIT 2 OFFSET 20";
+                $query = "SELECT * FROM book";
+                $result = $db->query($query);
+                $i=1;
+
+                if($result->num_rows > 0){
+                    $listgenre = array();
+                    $tempgenre = array();
+
+
+                    while ($obj = $result -> fetch_object()) {
+                        $tempgenre = $obj->genre;
+                        if(in_array($tempgenre, $listgenre)){
+                            //genre sudah ada
+                        }
+                        else{
+
+                            array_push($listgenre, $tempgenre);
+                        }
+                    }
+                    $temp['genre'] = "all";
+                    $temp['key'] = $i++;
+                    array_push($info, $temp);
+                    foreach($listgenre as $genre){
+                        $temp['genre'] = $genre;
+                        $temp['key'] = $i++;
+                        array_push($info, $temp);
+                    }
+                    echo json_encode($info);
+
+                }
+                else if($result->num_rows == 0){
+                    //tidak ada lagi buku yang dapat ditampilkan
+                    $info['data']['getdaftarbukustatus']=1;
+                    echo json_encode($info['data']);
+                }
+                $db->close();
+                exit;
+                break;
+
+            }
+//==========getdataprofil section===================================================================================//
+
+            case 'getdataprofil':{
+
+                $query = "SELECT * FROM user WHERE id = '$userId'";
+                $result = $db->query($query);
+
+                if($result->num_rows > 0){
+                    $obj = $result->fetch_object();
+                    $email = $obj->email;
+                    $username = $obj->username;
+                    $namalengkap = $obj->namalengkap;
+                    $nohandphone = $obj->nohandphone;
+                    $poin = $obj->poin;
+
+                    $info['data']['profildata']['email'] = $email;
+                    $info['data']['profildata']['username'] = $username;
+                    $info['data']['profildata']['namalengkap'] = $namalengkap;
+                    $info['data']['profildata']['nohandphone'] = $nohandphone;
+                    $info['data']['profildata']['point'] = $poin;
+
+                    echo json_encode($info['data']);
+
+
+                }
+                else{
+
+                    $info['data']['getdataprofilsucces'] = 0;
+                    echo json_encode($info['data']);
+                }
+
+                $db->close();
+                exit;
+                break;
+            }
+//==========updatedataprofil section===================================================================================//
+
+            case 'updatedataprofil':{
+                $query = "UPDATE user SET namalengkap = '$namaLengkap', nohandphone = '$noHandphone' WHERE id='$userId'";
+
+                if($db->query($query) === TRUE){
+
+                    $info['data']['updateprofil'] = 1;
+                    echo json_encode($info);
+
+                }
+                else {
+                    $info['data']['updateprofil'] = 0;
+                    echo json_encode($info);
+                }
+
+                $db->close();
+                exit;
+                break;
+
+            }
+//==========findbuku section======================================================================================//
+            case 'findbuku':{
+                $query= "SELECT * FROM book WHERE title LIKE '%$titleBuku%'";
+                $result = $db->query($query);
+
+                if ($result->num_rows > 0){
+
+                    while ($obj = $result -> fetch_object()) {
+                        $temp['id'] = $obj->id;
+                        $temp['title'] = $obj->title;
+                        $temp['date'] = $obj->date;
+
+                        $date = new DateTime($temp['date']);
+                        $temp['date'] = date_format($date,"d F Y ");    //convert to word
+
+                        $temp['genre'] = $obj->genre;
+                        $temp['uri'] = $obj->uri;
+                        $temp['description'] = $obj->description;
+                        $temp['cover'] = $obj->cover;
+
+                        array_push($info, $temp);
+
+
+                    }
+                    echo json_encode($info);
+                }
+                else{
+                    //buku tidak ditemukan
+                    $info['data']['databuku'] = 0;
+                    echo json_encode($info);
+                }
+                $db->close();
+                exit;
+                break;
+            }
+
+//==========addhistory section===================================================================================//
+            case 'addhistory': {
+                $date = date('Y-m-d H:i:s');
+                $searchUser = "SELECT * FROM history WHERE iduser = '$userId' AND idbuku = '$idBuku'";
+                $insertToHistory = "INSERT INTO history (iduser, idbuku, latestReadOn) VALUES ('$userId', '$idBuku','$date')";
+                $updateUserHistory = "UPDATE history SET date = '$date'";
+
+                if(strlen($userId) ==0 || strlen($idBuku) == 0){
+                    //input kosong stop
+                    $db->close();
+                    exit;
+                    break;
+                }
+                else{
+                    //input tidak kosong, tambahkan data ke tabel
+
+                    $sudahAdakah = $db->query($searchUser);
+
+                    //user dan buku ditemukan, update data dengan data baru
+                    if($sudahAdakah->num_rows > 0){
+
+                        //berhasil mengupdate data user
+                        if($db->query($updateUserHistory) === TRUE){
+                            $info['data']['addHistoryStatus'] =2;
+                            echo json_encode($info);
+                        }
+
+                        //gagal mengupdate data user
+                        else{
+                            $info['data']['addHistoryStatus'] =0;
+                            echo json_encode($info);
+                        }
+                    }
+
+                    //data belum ada, tambahakan data baru
+                    else{
+                        if($db->query($insertToHistory) === TRUE){
+                            //berhasil memasukan data ke tabel history
+                            $info['data']['addHistoryStatus'] =1;
+                            echo json_encode($info);
+                        }
+                        else{
+                            //gagal memasukan data ke tabel history
+                            $info['data']['addHistoryStatus']=0;
+                        }
+                    }
+
+                }
+
+                $db->close();
+                exit;
+                break;
+            }
+
+//==========gethistory section===================================================================================//
+            case 'gethistory':{
+#                $getuser = "SELECT * FROM user WHERE id = '$userId'";
+#                $getbuku = "SELECT * FROM book WHERE id = '$idBuku'";
+#                $getDataHistory = "SELECT * FROM history WHERE iduser = '$userId'";
+                $selecCondition = "SELECT * FROM history INNER JOIN book ON history.idbuku = book.id AND history.iduser = '$userId'";
+
+                //jika input tidak kosong
+                if(strlen($userId) != 0){
+
+                    $result = $db->query($selecCondition);
+
+                    while($obj = $result->fetch_object()){
+                        $temp['latestRead'] = $obj->latestReadOn;
+                        $temp['id'] = $obj->id;
+                        $temp['title'] = $obj->title;
+                        $temp['date'] = $obj->date;
+
+                        $date = new DateTime($temp['date']);
+                        $temp['date'] = date_format($date,"d F Y ");    //convert to word
+
+                        $temp['genre'] = $obj->genre;
+                        $temp['uri'] = $obj->uri;
+                        $temp['description'] = $obj->description;
+                        $temp['cover'] = $obj->cover;
+
+                        array_push($info, $temp);
+
+
+                    }
+                    echo json_encode($info);
+
+                }
+
+                //input kosong
+                else{
+                    //input kosong
+                    //stop
+                }
+
+                $db->close();
+                exit;
+                break;
+            }
+
+//==========deleteHistory section===================================================================================//
+            case 'deletehistory': {
+                $deleteQuery = "DELETE FROM history WHERE iduser = '$userId'";
+
+                //jika input userId tidak kosong
+                if(strlen($userId) != 0){
+                    //jika input tidak kosong, hapus data sesuai userId
+
+                    if($db->query($deleteQuery) === TRUE){
+                        //berhasil menghapus data dari tabel history
+                        $info['data']['deleteHistoryStatus'] = 1;
+                        echo json_encode($info);
+                    }
+                    else{
+                        //gagal menghapus data dari tabel history
+                        $info['data']['deleteHistoryStatus'] = 0;
+                        echo json_encode($info);
+                    }
+                }
+
+                //jika input userId kosong
+                else{
+                    //stop
+                }
+
+                $db->close();
+                exit;
+                break;
+            }
+            
+//==========addbukufavorit section===================================================================================//
+            case 'addbukufavorit': {
+                
+                $db->close();
+                exit;
+                break;
+            }
+//==========getbukufavorit section===================================================================================//
+            case 'getbukufavorit': {
+                
+                $db->close();
+                exit;
+                break;
+            }
+//==========removebukufavorit section===================================================================================//
+            case 'removebukufavorit': {
+                
+                $db->close();
+                exit;
+                break;
+            }
+
+//==========Default section===================================================================================//
+            default:{
+#                ini_set( 'display_errors', 1 );
+#                error_reporting( E_ALL );
+
+#                $query = "SELECT password FROM user WHERE email = 'caasperahsanuamala5@gmail.com'";
+#                $result = $db->query($query);
+#
+#                if($result->num_rows > 0){
+#
+#                    $obj = $result->fetch_object()
+#
+#                    $from = "admin@semerbak-swag.com ";
+#                    $to = "caasperahsanuamala5@gmail.com";
+#                    $subject = "LUPA PASSWORD";
+#                    $message = "Berikut adalah password anda  JANGAN BERIKAN KE SIAPAPUN\n apabila anda tidak meminta pesan ini, lupakan pesan ini";
+#                    $headers = "From:" . $from;
+#                    if(mail($to,$subject,$message, $headers)) {
+#                        echo "The email message was sent.";
+#                    } else {
+#                        echo "The email message was not sent.";
+#                    }
+#                }
+#                else{
+#                    echo "ELSE";
+#                }
+#
+#                $from = "admin@semerbak-swag.com ";
+#                $to = "caasperahsanuamala5@gmail.com";
+#                $subject = "LUPA PASSWORD";
+#                $message = "Berikut adalah password anda  JANGAN BERIKAN KE SIAPAPUN\n apabila anda tidak meminta pesan ini, lupakan pesan ini";
+#                $headers = "From:" . $from;
+#                if(mail($to,$subject,$message, $headers)) {
+#                    echo "The email message was sent.";
+#                } else {
+#                    echo "The email message was not sent.";
+#                }
+
+                $db->close();
+                exit;
+                break;
+            }
+
+        }
+
+    }
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
